@@ -10,6 +10,25 @@ const bottonePlay = document.getElementById("bottone-play")
 let gameOver = false
 let punteggio = 0
 
+//creo evento sul bottone play per generare il container
+bottonePlay.addEventListener ('click', function() {
+    containerCampoMinato.innerHTML = ""
+    gameOver = false
+    punteggio = 0
+
+    //a seconda dell'opzione selezionata, le caselle generate cambiano
+    if (document.getElementById('1').selected) {
+        campoMinato(10, 10)
+        celleBombe(100)
+    } else if (document.getElementById('2').selected) {
+        campoMinato(9, 9)
+        celleBombe(81)
+    } else if (document.getElementById('3').selected) {
+        campoMinato(7, 7)
+        celleBombe(49)
+    }
+})
+
 //creo la funzione per generare le sedici bombe, a seconda di quante celle avrò nel campo minato i numeri random si adattano
 function celleBombe(max) {
     const bombeCampo = []
@@ -58,12 +77,14 @@ function onClickEvents(cella, bombe) {
         //creo una costante con l'indice delle caselle, per confrontarla dopo con gli indici delle bombe
         const indiceCella = +this.dataset.indice
 
+        //blocco ulteririori click in queste casistiche
         if (this.classList.contains('bomb-cell') || this.classList.contains('cliccato') || gameOver) {
             return
         }
 
-        //al click, la casella cambia colore
+        //al click, la casella cambia colore ed il punteggio incrementa
         cella.classList.add('cliccato')
+        cella.classList.remove('bandierina')
         console.log("hai cliccato sul numero", +cella.dataset.indice)
         punteggio++
         console.log(punteggio)
@@ -76,24 +97,19 @@ function onClickEvents(cella, bombe) {
             alert(`'Hai perso! Il tuo punteggio totale è: ${punteggio}'`)
         }
     })
+
+    //aggiungo bandierina al click con il destro
+    cella.addEventListener ('contextmenu', function (flag) {
+        flag.preventDefault()
+
+        //impedisco di mettere bandierine a gioco finito, o se le caselle sono cliccate
+        if (gameOver || this.classList.contains('cliccato')) {
+            return
+        }
+
+        cella.classList.add('bandierina')
+    })
 }
-
-//creo evento sul bottone play per generare il container
-bottonePlay.addEventListener ('click', function() {
-    containerCampoMinato.innerHTML = ""
-
-    //a seconda dell'opzione selezionata, le caselle generate cambiano
-    if (document.getElementById('1').selected) {
-        campoMinato(10, 10)
-        celleBombe(100)
-    } else if (document.getElementById('2').selected) {
-        campoMinato(9, 9)
-        celleBombe(81)
-    } else if (document.getElementById('3').selected) {
-        campoMinato(7, 7)
-        celleBombe(49)
-    }
-})
 
 
 /*
