@@ -2,6 +2,8 @@
 
 //recupero elemento HTML in cui inserire le celle
 const containerCampoMinato = document.querySelector('.campo-minato')
+let gameOver = false
+let punteggio = 0
 
 //creo la funzione per generare le sedici bombe, a seconda di quante celle avrò nel campo minato i numeri random si adattano
 function celleBombe(max) {
@@ -23,6 +25,8 @@ function celleBombe(max) {
 function campoMinato(cellaX, cellaY) {
     //cosa stabilisce la funzione in sé
     const celleRisultanti = cellaX * cellaY
+
+    //riporto qui il dato delle bombe per poterci accedere dopo
     const bombe = celleBombe(celleRisultanti)
     console.log(bombe)
 
@@ -35,6 +39,8 @@ function campoMinato(cellaX, cellaY) {
         cella.classList.add('cella')
         containerCampoMinato.append(cella)
         cella.dataset.indice = i
+
+        //aggiungo la funzione eventlistener per accedere a tutti i dati
         onClickEvents(cella, bombe)
     }
 }
@@ -44,16 +50,26 @@ function onClickEvents(cella, bombe) {
 
     cella.addEventListener ('click', function() {
 
+        //creo una costante con l'indice delle caselle, per confrontarla dopo con gli indici delle bombe
         const indiceCella = +this.dataset.indice
 
-        this.classList.add('on-click')
-        console.log("hai cliccato sul numero", +cella.dataset.indice)
-
-        if (bombe.includes(indiceCella)) {
-            cella.classList.remove('on-click')
-            cella.classList.add('bomb-cell')
+        if (this.classList.contains('bomb-cell') || this.classList.contains('cliccato') || gameOver) {
+            return
         }
 
+        //al click, la casella cambia colore
+        cella.classList.add('cliccato')
+        console.log("hai cliccato sul numero", +cella.dataset.indice)
+        punteggio++
+        console.log(punteggio)
+
+        //confronto gli indici delle bombe per cambiarci classe al click
+        if (bombe.includes(indiceCella)) {
+            cella.classList.remove('cliccato')
+            cella.classList.add('bomb-cell')
+            gameOver = true
+            alert(`'Hai perso! Il tuo punteggio totale è: ${punteggio}'`)
+        }
     })
 }
 

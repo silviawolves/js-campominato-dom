@@ -86,13 +86,15 @@ footer {
     border-style: solid;
 }
 
-.on-click {
+.cliccato {
     background-color: var(--grigio-cella);
     color: white;
     border: 1px dashed #717171;
 }
 
 .bomb-cell {
+    background-image: url('../img/bomb.png');
+    background-size: cover;
     background-color: red;
     border: 1px dashed #717171;
 }
