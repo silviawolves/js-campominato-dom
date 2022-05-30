@@ -19,39 +19,41 @@ function celleBombe(max) {
     return bombeCampo
 }
 
-console.log(celleBombe(100))
-console.log(celleBombe(81))
-console.log(celleBombe(49))
-
-//creo una funzione generica per creare X celle in base al livello di difficolta
+//creo una funzione generica per creare X celle in base al livello di difficolta, che darò dopo
 function campoMinato(cellaX, cellaY) {
     //cosa stabilisce la funzione in sé
     const celleRisultanti = cellaX * cellaY
+    const bombe = celleBombe(celleRisultanti)
+    console.log(bombe)
 
     //assegno una dimensione che aggiusti la quantità di caselle per row, a prescindere da quante celle genero
     containerCampoMinato.style.width = `calc((var(--size) * ${cellaX}) + (2 * var(--border))`
 
-    //creo un ciclo per formare ogni singola cella
+    //creo un ciclo per formare ogni singola cella, che appendo nel container campo-minato
     for (let i = 1; i <= celleRisultanti; i++) {
         const cella = document.createElement('div')
         cella.classList.add('cella')
         containerCampoMinato.append(cella)
         cella.dataset.indice = i
-
-        onClickEvents(cella)
-        //aggiunto un eventListener per cambiare colore alla cella quando clicco
-        /*cella.addEventListener ('click', function(){
-            this.classList.toggle('on-click')
-            console.log("hai cliccato sul numero", i)
-        })*/
+        onClickEvents(cella, bombe)
     }
 }
 
-function onClickEvents (cella) {
+//creo la funzione per il click sulle celle
+function onClickEvents(cella, bombe) {
 
     cella.addEventListener ('click', function() {
+
+        const indiceCella = +this.dataset.indice
+
         this.classList.add('on-click')
         console.log("hai cliccato sul numero", +cella.dataset.indice)
+
+        if (bombe.includes(indiceCella)) {
+            cella.classList.remove('on-click')
+            cella.classList.add('bomb-cell')
+        }
+
     })
 }
 
@@ -96,6 +98,6 @@ BONUS:
     con difficoltà 2 => tra 1 e 81
     con difficoltà 3 => tra 1 e 49
 
-    - al click con il tasto destro su una cella, inseriamo il flag per indicare che la cella potrebbe avere una bomba
-    - Il computer deve generare 16 numeri casuali - cioè le bombe - compresi nello stesso range della difficoltà prescelta.
+- al click con il tasto destro su una cella, inseriamo il flag per indicare che la cella potrebbe avere una bomba
+- Il computer deve generare 16 numeri casuali - cioè le bombe - compresi nello stesso range della difficoltà prescelta.
 */

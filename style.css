@@ -93,6 +93,6 @@ footer {
 }
 
 .bomb-cell {
-    background-color: rgb(163, 46, 46);
+    background-color: red;
     border: 1px dashed #717171;
 }
