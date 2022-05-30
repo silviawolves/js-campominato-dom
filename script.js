@@ -24,7 +24,6 @@ console.log(celleBombe(81))
 console.log(celleBombe(49))
 
 //creo una funzione generica per creare X celle in base al livello di difficolta
-//ora settata a 1 = 100 celle
 function campoMinato(cellaX, cellaY) {
     //cosa stabilisce la funzione in sé
     const celleRisultanti = cellaX * cellaY
@@ -39,12 +38,21 @@ function campoMinato(cellaX, cellaY) {
         containerCampoMinato.append(cella)
         cella.dataset.indice = i
 
+        onClickEvents(cella)
         //aggiunto un eventListener per cambiare colore alla cella quando clicco
-        cella.addEventListener ('click', function(){
+        /*cella.addEventListener ('click', function(){
             this.classList.toggle('on-click')
             console.log("hai cliccato sul numero", i)
-        })
+        })*/
     }
+}
+
+function onClickEvents (cella) {
+
+    cella.addEventListener ('click', function() {
+        this.classList.add('on-click')
+        console.log("hai cliccato sul numero", +cella.dataset.indice)
+    })
 }
 
 //creo la sezione per settare la difficoltà del gioco
