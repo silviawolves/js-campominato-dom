@@ -1,0 +1,82 @@
+:root {
+    --size: 40px;
+    --azzurro: #7CFFD2;
+    --azzurro-cella: #6395F1;
+}
+
+header {
+    background-color: white;
+    font-family: 'Roboto', sans-serif;
+    padding: 1rem 0;
+}
+
+select {
+    width: 120px;
+}
+
+main {
+    flex-grow: 1;
+    background-color: var(--azzurro);
+    display: flex;
+    align-items: center;
+}
+
+footer {
+    background-color: white;
+    font-size: .8rem;
+    padding: .8rem 0;
+}
+
+.viewport-page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-boolean {
+    height: 40px;
+    vertical-align: middle;
+}
+
+.title {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 2rem;
+    font-weight: 700;
+    vertical-align: middle;
+}
+
+.destra {
+    font-size: .8rem;
+}
+
+.my-button {
+    height: 20px;
+    width: 70px;
+    line-height: 10px;
+    vertical-align: baseline;
+    margin-left: 5px;
+    border: 1px solid black;
+    border-radius: 2px;
+}
+
+.campo-minato {
+    font-family: 'IBM Plex Sans', sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cella {
+    height: var(--size);
+    width: var(--size);
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .8rem;
+}
+
+.on-click {
+    background-color: var(--azzurro-cella);
+    color: white;
+}
