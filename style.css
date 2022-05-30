@@ -1,5 +1,5 @@
 :root {
-    --size: 40px;
+    --size: 30px;
     --main-color: #C0C0C0;
     --grigio-cella: #acacac;
     --border: 4px;
@@ -89,5 +89,10 @@ footer {
 .on-click {
     background-color: var(--grigio-cella);
     color: white;
+    border: 1px dashed #717171;
+}
+
+.bomb-cell {
+    background-color: rgb(163, 46, 46);
     border: 1px dashed #717171;
 }
