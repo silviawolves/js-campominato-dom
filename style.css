@@ -1,7 +1,8 @@
 :root {
     --size: 40px;
-    --azzurro: #7CFFD2;
-    --azzurro-cella: #6395F1;
+    --main-color: #C0C0C0;
+    --grigio-cella: #acacac;
+    --border: 4px;
 }
 
 header {
@@ -16,9 +17,12 @@ select {
 
 main {
     flex-grow: 1;
-    background-color: var(--azzurro);
+    background-color: var(--main-color);
     display: flex;
     align-items: center;
+    border-color: #909090 #808080 #808080 #909090;
+    border-width: 3px;
+    border-style: solid;
 }
 
 footer {
@@ -64,6 +68,9 @@ footer {
     font-family: 'IBM Plex Sans', sans-serif;
     display: flex;
     flex-wrap: wrap;
+    border-color: #808080 #fff #fff #808080;
+    border-width: var(--border);
+    border-style: solid;
 }
 
 .cella {
@@ -74,9 +81,13 @@ footer {
     align-items: center;
     justify-content: center;
     font-size: .8rem;
+    border-color: #fff #909090 #909090 #fff;
+    border-width: 3px;
+    border-style: solid;
 }
 
 .on-click {
-    background-color: var(--azzurro-cella);
+    background-color: var(--grigio-cella);
     color: white;
+    border: 1px dashed #717171;
 }

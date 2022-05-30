@@ -11,7 +11,7 @@ function campoMinato(cellaX, cellaY) {
     const celleRisultanti = cellaX * cellaY
 
     //assegno una dimensione che aggiusti la quantità di caselle per row
-    containerCampoMinato.style.width = `calc(var(--size) * ${cellaX})`
+    containerCampoMinato.style.width = `calc((var(--size) * ${cellaX}) + (2 * var(--border))`
 
     //creo un ciclo per formare ogni singola cella
     for (let i = 1; i <= celleRisultanti; i++) {
@@ -49,13 +49,24 @@ bottonePlay.addEventListener ('click', function() {
 
 
 /*
-Generare una griglia di gioco quadrata , in cui ogni cella contiene un numero incrementale tra quelli compresi tra 1 e 100
-Quando l’utente clicca su ogni cella, la cella cliccata si colora di azzurro.
+Il computer deve generare 16 numeri casuali compresi nel range della griglia: le bombe.I numeri nella lista delle bombe non possono essere duplicati.
 
-BONUS
-L’utente indica un livello di difficoltà in base al quale viene generata una griglia di gioco quadrata, in cui ogni cella contiene un numero tra quelli compresi in un range:
-con difficoltà 1 => tra 1 e 100
-con difficoltà 2 => tra 1 e 81
-con difficoltà 3 => tra 1 e 49
-Quando l’utente clicca su ogni cella, la cella cliccata si colora di azzurro.
+In seguito l’utente clicca su una cella:
+se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina,
+altrimenti la cella cliccata si colora di azzurro e l’utente può continuare a cliccare sulle altre celle.
+
+La partita termina quando il giocatore clicca su una bomba o raggiunge il numero massimo possibile di numeri consentiti.
+
+Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha cliccato su una cella che non era una bomba.
+
+BONUS:
+- quando si clicca su una bomba e finisce la partita, evitare che si possa cliccare su altre celle
+- quando si clicca su una bomba e finisce la partita, il software scopre tutte le bombe nascoste
+- L’utente indica un livello di difficoltà in base al quale viene generata una griglia di gioco quadrata, in cui ogni cella contiene un numero tra quelli compresi in un range:
+    con difficoltà 1 => tra 1 e 100
+    con difficoltà 2 => tra 1 e 81
+    con difficoltà 3 => tra 1 e 49
+
+    - al click con il tasto destro su una cella, inseriamo il flag per indicare che la cella potrebbe avere una bomba
+    - Il computer deve generare 16 numeri casuali - cioè le bombe - compresi nello stesso range della difficoltà prescelta.
 */
