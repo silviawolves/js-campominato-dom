@@ -3,20 +3,24 @@
 //recupero elemento HTML in cui inserire le celle
 const containerCampoMinato = document.querySelector('.campo-minato')
 
-//creo la funzione per generare le bombe, a seconda di quante celle avrò nel campo minato
+//creo la funzione per generare le sedici bombe, a seconda di quante celle avrò nel campo minato i numeri random si adattano
 function celleBombe(max) {
     const bombeCampo = []
 
-    for (let i = 1; i <= 16; i++) {
-        const indiciBombe = Math.floor(Math.random() * max + 1)
+    for (let i = 0; i < 16; i++) {
+        const indiciBombe = Math.floor((Math.random() * max) + 1)
 
         if (!bombeCampo.includes(indiciBombe)) {
             bombeCampo.push(indiciBombe)
+        } else {
+            i--
         }
     }
     return bombeCampo
 }
 
+console.log(celleBombe(100))
+console.log(celleBombe(81))
 console.log(celleBombe(49))
 
 //creo una funzione generica per creare X celle in base al livello di difficolta
