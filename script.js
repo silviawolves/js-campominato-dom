@@ -2,6 +2,11 @@
 
 //recupero elemento HTML in cui inserire le celle
 const containerCampoMinato = document.querySelector('.campo-minato')
+
+//recupero le informazioni del bottone e del select per impostare la difficoltà
+const bottonePlay = document.getElementById("bottone-play")
+
+//imposto variabili per il game over e per il punteggio, da aggiornare dopo
 let gameOver = false
 let punteggio = 0
 
@@ -63,7 +68,7 @@ function onClickEvents(cella, bombe) {
         punteggio++
         console.log(punteggio)
 
-        //confronto gli indici delle bombe per cambiarci classe al click
+        //confronto gli indici delle bombe per cambiarci classe al click, se c'è una bomba appare l'alert con il risultato e si blocca tutto
         if (bombe.includes(indiceCella)) {
             cella.classList.remove('cliccato')
             cella.classList.add('bomb-cell')
@@ -72,10 +77,6 @@ function onClickEvents(cella, bombe) {
         }
     })
 }
-
-//creo la sezione per settare la difficoltà del gioco
-//recupero le informazioni del bottone e del select
-const bottonePlay = document.getElementById("bottone-play")
 
 //creo evento sul bottone play per generare il container
 bottonePlay.addEventListener ('click', function() {
