@@ -97,6 +97,7 @@ function onClickEvents(cella, bombe) {
         if (bombe.includes(indiceCella)) {
             cella.classList.remove('cliccato')
             cella.classList.add('bomb-cell')
+            punteggio--
             gameOver = true
             alert(`'Hai perso! Il tuo punteggio totale è: ${punteggio}'`)
         }
