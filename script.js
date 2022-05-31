@@ -10,6 +10,10 @@ const bottonePlay = document.getElementById("bottone-play")
 let gameOver = false
 let punteggio = 0
 
+//gioco base che appare all'apertura della pagina
+campoMinato(10, 10)
+celleBombe(100)
+
 //creo evento sul bottone play per generare il container
 bottonePlay.addEventListener ('click', function() {
     containerCampoMinato.innerHTML = ""
